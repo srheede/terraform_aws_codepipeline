@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - curl -s -qL -o terraform_install.zip https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
+      - unzip terraform_install.zip -d /usr/bin/
+      - chmod +x /usr/bin/terraform
+  pre_build:
+    commands:
+      - terraform init
+  build:
+    commands:
+      - terraform apply -auto-approve
+  post_build:
+    commands:
+      - echo post-build
